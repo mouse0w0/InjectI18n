@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.github.mouse0w0'
+version '1.0.0'
+
+sourceCompatibility = targetCompatibility = 1.8
+
+mainClassName = 'com.github.mouse0w0.injecti18n.Main'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.ow2.asm:asm-commons:8.0.1'
+    compile 'commons-io:commons-io:2.6'
+}
+
+jar {
+    String gitVersion = 'git rev-parse --short HEAD'.execute().text.trim();
+    manifest.attributes([
+            "Main-Class"              : mainClassName,
+            "Implementation-Title"    : rootProject.name,
+            "Implementation-Version"  : "git-${rootProject.name}-${project.version}-${gitVersion}",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+    ])
+}
+
