@@ -21,7 +21,7 @@ import java.util.jar.JarOutputStream;
 public class Main {
 
     private static final String I18N_CLASS_FILE_NAME = "com/github/mouse0w0/injecti18n/I18n.class";
-    private static final String LANG_FILE_NAME = "inject_i18n.lang";
+    private static final String LANG_FILE_NAME = "generated.lang";
 
     private static final List<IIMethodVisitor> METHOD_VISITORS = new ArrayList<>();
 
@@ -36,8 +36,9 @@ public class Main {
         try {
             transform(inputFile, outputFile);
             System.out.println("Completed Transform!");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Failed Transform!");
         }
     }
 
